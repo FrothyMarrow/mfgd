@@ -21,7 +21,7 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON A
 #include <assert.h>
 
 #include <glad/gl.h>
-#include <GL/glfw.h>
+#include <GLFW/glfw.h>
 
 #if defined(__APPLE__)
 #include <OpenGL/glu.h>

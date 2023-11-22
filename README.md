@@ -1,7 +1,7 @@
 Math for Game Developers Sample Code
 ====================================
 
-This is the source code for the sample code that I use in my [Math for Game Developers YouTube series](http://www.youtube.com/playlist?list=PLW3Zl3wyJwWOpdhYedlD-yCB7WQoHf-My). If you want to follow along with the videos, you can download by clicking the 'ZIP' button in the header near the top of this page.
+This is the source code for the sample code that is used in [Math for Game Developers YouTube series](http://www.youtube.com/playlist?list=PLW3Zl3wyJwWOpdhYedlD-yCB7WQoHf-My). It has been modified to run on GLFW 3 and glad, the original source code can be found at [MathForGameDevelopers](https://github.com/BSVino/MathForGameDevelopers). If you want to follow along with the videos, you can download by clicking the 'ZIP' button in the header near the top of this page.
 
 Overview
 --------
@@ -54,30 +54,10 @@ This format is used for things like shader .txt files.
 Compiling
 ---------
 
-This project has no dependencies and should compile out-of-the-box. If something doesn't work for you please let me know.
-
-1. Download and install Visual Studio 2010 Express.
-2. Download the MFGD project files and unpack them somewhere to your hard drive.
-3. Double click the MFGD.sln file. Visual Studio should appear.
-4. Press F7 to compile the game.
-5. Press F5 to run the game.
-
-Want to send your game to a sexy friend? You'll need to do some extra steps.
-
-1. Go to the dropdown in Visual Studio that says "Debug" and set it to "Release" instead. It should be near the top of the screen.
-2. Press F7 to compile the game in "Release" mode.
-3. Find the file MFGD.exe (it's an "Application" file type) and copy it over to the "content" folder.
-4. Send this content folder to your sexy friend.
-
-(The steps are the same for non-sexy friends.)
-
-For Linux the steps are:
-
-1. Make sure you have GCC installed for your system.
-2. Download the MFGD project files and unpack them somewhere on your hard drive.
-3. Open a terminal and navigate to this directory, eg "cd ~/mfgd"
-4. Type "make"
-5. Type "./run_mfgd"
+1. Download the MFGD project files and unpack them somewhere on your hard drive.
+2. Open a terminal and navigate to this directory, eg "cd ~/mfgd"
+3. Type "make"
+4. Type "./scripts/run_mfgd"
 
 Tinker
 ------

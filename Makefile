@@ -1,8 +1,8 @@
-CC=gcc
-CXX=g++
+CC=clang
+CXX=clang++
 RM=rm -f
 CPPFLAGS=-D_DEBUG -g #-O2
-LDFLAGS=-Llib/osx
+LDFLAGS=-Llib/
 LDLIBS=-lglfw -framework OpenGL -framework ApplicationServices
 INCLUDES=-I. -Icommon -Imath -Iinclude
 
@@ -43,24 +43,13 @@ OBJS=$(OBJS_CPP) $(OBJS_C)
 all: mfgd
 
 mfgd: $(OBJS)
-	g++ $(LDFLAGS) -o mfgd $(OBJS) $(LDLIBS) 
+	$(CXX) $(LDFLAGS) -o mfgd $(OBJS) $(LDLIBS) 
 
 %.o:%.c
-	$(CXX) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
 
 %.o:%.cpp
 	$(CXX) $(CPPFLAGS) -std=c++0x $(INCLUDES) -c $< -o $@
 
-depend: .depend
-
-.depend: $(SRCS)
-	rm -f ./.depend
-	$(CXX) $(CPPFLAGS) $(INCLUDES) -MM $(SRCS) $^>>./.depend;
-
 clean:
-	$(RM) $(OBJS) .depend
-
-dist-clean: clean
-	$(RM) *~ .dependtool
-
-include .depend
+	$(RM) $(OBJS) libglfw.3.dylib mfgd

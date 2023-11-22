@@ -2,10 +2,7 @@
 /*.sdf
 /*.suo
 /*.opensdf
-/Debug
-/Release
 mfgd
 *.o
-.depend
-*.sublime-workspace
+*.dylib
 .DS_Store
