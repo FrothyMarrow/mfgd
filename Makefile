@@ -1,13 +1,13 @@
 CC=gcc
 CXX=g++
 RM=rm -f
-CPPFLAGS=
-LDFLAGS=-Llib
-LDLIBS=-lglfw -lXrandr -lGL
+CPPFLAGS=-D_DEBUG -g #-O2
+LDFLAGS=-Llib/osx
+LDLIBS=-lglfw -framework OpenGL -framework ApplicationServices
 INCLUDES=-I. -Icommon -Imath -Iinclude
 
 SRCS_CPP= \
-    common/platform_linux.cpp \
+    common/platform_osx.cpp \
     common/mtrand.cpp \
     datamanager/data.cpp \
     datamanager/dataserializer.cpp \
@@ -31,7 +31,7 @@ SRCS_CPP= \
 	renderer/stanfordbunny.cpp \
 
 SRCS_C= \
-	renderer/gl3w.c \
+	renderer/gl.c \
 
 SRCS= $(SRCS_CPP) $(SRCS_C)
 

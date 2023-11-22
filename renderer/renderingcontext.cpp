@@ -18,7 +18,7 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON A
 #include "renderingcontext.h"
 
 #include <string.h>
-#include <GL3/gl3w.h>
+#include <glad/gl.h>
 
 #if defined(__APPLE__)
 #include <OpenGL/glu.h>

@@ -20,7 +20,7 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON A
 #include <memory>
 #include <fstream>
 
-#include <GL3/gl3w.h>
+#include <glad/gl.h>
 #include <time.h>
 
 #include <common.h>

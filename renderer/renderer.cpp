@@ -20,7 +20,7 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON A
 #include <vector>
 #include <assert.h>
 
-#include <GL3/gl3w.h>
+#include <glad/gl.h>
 #include <GL/glfw.h>
 
 #if defined(__APPLE__)
@@ -70,8 +70,6 @@ void CRenderer::Initialize()
 	LoadShaders();
 	CShaderLibrary::CompileShaders(m_iScreenSamples);
 
-	WindowResize(m_iWidth, m_iHeight);
-
 	if (!CShaderLibrary::IsCompiled())
 		exit(1);
 }
@@ -88,12 +86,6 @@ void CRenderer::LoadShaders()
 
 		CShaderLibrary::AddShader("shaders/" + sShader);
 	}
-}
-
-void CRenderer::WindowResize(int w, int h)
-{
-	m_iWidth = w;
-	m_iHeight = h;
 }
 
 void CRenderer::StartRendering(class CRenderingContext* pContext)
@@ -213,9 +205,6 @@ void CRenderer::SetSize(int w, int h)
 
 bool CRenderer::HardwareSupported()
 {
-	if (!gl3wIsSupported(3, 2))
-		return false;
-
 	// Compile a test shader. If it fails we don't support shaders.
 	const char* pszVertexShader =
 		"#version 150\n"

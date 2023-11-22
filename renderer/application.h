@@ -17,6 +17,9 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON A
 
 #pragma once
 
+#include "glad/gl.h"
+#include <GL/glfw.h>
+
 #include <vector>
 #include <string>
 
@@ -52,29 +55,26 @@ public:
 	static void					RenderCallback() { Get()->Render(); };
 	virtual void				Render();
 
-	static int					WindowCloseCallback() { return Get()->WindowClose(); };
-	virtual int					WindowClose();
+	static void 				WindowCloseCallback(GLFWwindow* window) { return Get()->WindowClose(window); };
+	virtual void				WindowClose(GLFWwindow* window);
 
-	static void					WindowResizeCallback(int x, int y) { Get()->WindowResize(x, y); };
-	virtual void				WindowResize(int x, int y);
-
-	static void					MouseMotionCallback(int x, int y) { Get()->MouseMotion(x, y); };
+	static void					MouseMotionCallback(GLFWwindow* window, double x, double y) { Get()->MouseMotion(x, y); };
 	virtual void				MouseMotion(int x, int y);
 
-	static void					MouseInputCallback(int iButton, int iState);
+	static void					MouseInputCallback(GLFWwindow* window, int a, int b, int c);
 	void						MouseInputCallback(int iButton, tinker_mouse_state_t iState);
 	virtual bool				MouseInput(int iButton, tinker_mouse_state_t iState);
 
 	static void					MouseWheelCallback(int x, int y);
 	virtual void				MouseWheel(int x, int y) {};
 
-	static void					KeyEventCallback(int c, int e) { Get()->KeyEvent(c, e); };
-	void						KeyEvent(int c, int e);
+	static void					KeyEventCallback(GLFWwindow* window, int a, int b, int c, int d) { Get()->KeyEvent(window, a, b, c, d); };
+	void						KeyEvent(GLFWwindow* window, int a, int b, int c, int d);
 	virtual bool				KeyPress(int c);
 	virtual void				KeyRelease(int c);
 
-	static void					CharEventCallback(int c, int e) { Get()->CharEvent(c, e); };
-	void						CharEvent(int c, int e);
+	static void					CharEventCallback(GLFWwindow* window, unsigned int c) { Get()->CharEvent(window, c); };
+	void						CharEvent(GLFWwindow* window, unsigned int c);
 
 	virtual bool				DoKeyPress(int c) { return false; };
 	virtual void				DoKeyRelease(int c) {};
@@ -87,7 +87,7 @@ public:
 	bool						IsMouseLeftDown();
 	bool						IsMouseRightDown();
 	bool						IsMouseMiddleDown();
-	void						GetMousePosition(int& x, int& y);
+	void						GetMousePosition(double& x, double& y);
 
 	void						SetMouseCursorEnabled(bool bEnabled);
 	bool						IsMouseCursorEnabled();
@@ -105,7 +105,7 @@ public:
 	static CApplication*		Get() { return s_pApplication; };
 
 protected:
-	size_t						m_pWindow;
+	GLFWwindow*					m_pWindow;
 	size_t						m_iWindowWidth;
 	size_t						m_iWindowHeight;
 	bool						m_bFullscreen;
