@@ -1,8 +1,7 @@
 CC=clang
 CXX=clang++
 RM=rm -f
-CPPFLAGS=-D_DEBUG -g #-O2
-LDFLAGS=-Llib/
+CPPFLAGS=-D_DEBUG -g#-O2
 LDLIBS=-lglfw -framework OpenGL -framework ApplicationServices
 INCLUDES=-Iinclude -Iengine -Iengine/common -Iengine/math -Iengine/include
 
@@ -43,7 +42,7 @@ OBJS=$(OBJS_CPP) $(OBJS_C)
 all: mfgd
 
 mfgd: $(OBJS)
-	$(CXX) $(LDFLAGS) -o mfgd $(OBJS) $(LDLIBS) 
+	$(CXX) -o mfgd $(OBJS) $(LDLIBS) 
 
 %.o:%.c
 	$(CC) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
@@ -52,4 +51,4 @@ mfgd: $(OBJS)
 	$(CXX) $(CPPFLAGS) -std=c++0x $(INCLUDES) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) libglfw.3.dylib mfgd
+	$(RM) $(OBJS) mfgd

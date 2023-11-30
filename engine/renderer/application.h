@@ -18,7 +18,7 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON A
 #pragma once
 
 #include "glad/gl.h"
-#include <GLFW/glfw.h>
+#include <GLFW/glfw3.h>
 
 #include <vector>
 #include <string>
