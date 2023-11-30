@@ -27,6 +27,8 @@ IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 OF SUCH DAMAGE.
 */
 
+#define GLFW_INCLUDE_NONE
+
 #include "renderer.h"
 
 #include <assert.h>
