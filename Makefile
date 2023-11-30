@@ -4,34 +4,34 @@ RM=rm -f
 CPPFLAGS=-D_DEBUG -g #-O2
 LDFLAGS=-Llib/
 LDLIBS=-lglfw -framework OpenGL -framework ApplicationServices
-INCLUDES=-I. -Icommon -Imath -Iinclude
+INCLUDES=-Iinclude -Iengine -Iengine/common -Iengine/math -Iengine/include
 
 SRCS_CPP= \
-    common/platform_osx.cpp \
-    common/mtrand.cpp \
-    datamanager/data.cpp \
-    datamanager/dataserializer.cpp \
+    engine/common/platform_osx.cpp \
+    engine/common/mtrand.cpp \
+    engine/datamanager/data.cpp \
+    engine/datamanager/dataserializer.cpp \
+	engine/math/collision.cpp \
+	engine/math/color.cpp \
+	engine/math/euler.cpp \
+	engine/math/frustum.cpp \
+	engine/math/matrix.cpp \
+	engine/math/quaternion.cpp \
+	engine/math/vector.cpp \
+	engine/math/graph.cpp \
+	engine/renderer/application.cpp \
+	engine/renderer/image_read.cpp \
+	engine/renderer/renderer.cpp \
+	engine/renderer/renderingcontext.cpp \
+	engine/renderer/shaders.cpp \
+	engine/renderer/stanfordbunny.cpp \
 	game/character.cpp \
 	game/game.cpp \
 	game/handle.cpp \
 	game/main.cpp \
-	math/collision.cpp \
-	math/color.cpp \
-	math/euler.cpp \
-	math/frustum.cpp \
-	math/matrix.cpp \
-	math/quaternion.cpp \
-	math/vector.cpp \
-	math/graph.cpp \
-	renderer/application.cpp \
-	renderer/image_read.cpp \
-	renderer/renderer.cpp \
-	renderer/renderingcontext.cpp \
-	renderer/shaders.cpp \
-	renderer/stanfordbunny.cpp \
 
 SRCS_C= \
-	renderer/gl.c \
+	engine/renderer/gl.c \
 
 SRCS= $(SRCS_CPP) $(SRCS_C)
 
