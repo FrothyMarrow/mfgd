@@ -136,10 +136,10 @@ void CGame::Load()
 	}
 
 	m_stars[0] = Vector(0, 2, 0);
-	m_stars[1] = Vector(-0.5, 2, -0.5);
-	m_stars[2] = Vector(0, 2, -0.5);
-	m_stars[3] = Vector(-0.5, 2, 0);
-	m_stars[4] = Vector(-0.25, 2, -0.25);
+	// m_stars[1] = Vector(-0.5, 2, -0.5);
+	// m_stars[2] = Vector(0, 2, -0.5);
+	// m_stars[3] = Vector(-0.5, 2, 0);
+	// m_stars[4] = Vector(-0.25, 2, -0.25);
 }
 
 void CGame::MakePuff(const Point& p)
@@ -732,6 +732,8 @@ void CGame::Draw()
 
 	// First tell OpenGL what "shader" or "program" to use.
 	r.UseProgram("model");
+	
+	
 
 	// Set the sunlight direction. The y component is -1 so the light is pointing down.
 	Vector vecSunlight = Vector(1, -1, 1).Normalized();
@@ -1541,7 +1543,7 @@ void CGame::GraphDraw()
 				c.SetUniform("vecColor", Color(0, 255, 0, 255));
 			else if (node == m_pTargetNode)
 				c.SetUniform("vecColor", Color(255, 120, 0, 255));
-			else if (node->path_weight < 99999999999)
+			else if (node->path_weight < 99999999999.0f)
 			{
 				int r = (int)Remap(node->path_weight, 0, 10, 50, 255);
 				c.SetUniform("vecColor", Color(r, 50, 50, 255));

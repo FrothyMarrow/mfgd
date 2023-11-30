@@ -25,6 +25,6 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON A
 void mtsrand(size_t iSeed);
 size_t mtrand();
 
-#define MTRAND_MAX ((size_t)~0)
+#define MTRAND_MAX ((float)~0)
 
 #endif
