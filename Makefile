@@ -6,10 +6,10 @@ LDLIBS=-lglfw -framework OpenGL -framework ApplicationServices
 INCLUDES=-Iinclude -Iengine -Iengine/common -Iengine/math -Iengine/include
 
 SRCS_CPP= \
-    engine/common/platform_osx.cpp \
-    engine/common/mtrand.cpp \
-    engine/datamanager/data.cpp \
-    engine/datamanager/dataserializer.cpp \
+	engine/common/platform_osx.cpp \
+	engine/common/mtrand.cpp \
+	engine/datamanager/data.cpp \
+	engine/datamanager/dataserializer.cpp \
 	engine/math/collision.cpp \
 	engine/math/color.cpp \
 	engine/math/euler.cpp \

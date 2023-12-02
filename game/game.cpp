@@ -1253,8 +1253,7 @@ void CGame::GameLoop() {
   Vector vecMonsterMin = Vector(-1, 0, -1);
   Vector vecMonsterMax = Vector(1, 2, 1);
 
-  /*
-  CCharacter* pTarget1 = CreateCharacter();
+  CCharacter *pTarget1 = CreateCharacter();
   pTarget1->SetTransform(Vector(2, 2, 2), 0, Vector(0, 1, 0), Vector(6, 0, 6));
   pTarget1->m_aabbSize.vecMin = vecMonsterMin;
   pTarget1->m_aabbSize.vecMax = vecMonsterMax;
@@ -1262,7 +1261,7 @@ void CGame::GameLoop() {
   pTarget1->m_bEnemyAI = true;
   pTarget1->m_bTakesDamage = true;
 
-  CCharacter* pTarget2 = CreateCharacter();
+  CCharacter *pTarget2 = CreateCharacter();
   pTarget2->SetTransform(Vector(2, 2, 2), 0, Vector(0, 1, 0), Vector(6, 0, -6));
   pTarget2->m_aabbSize.vecMin = vecMonsterMin;
   pTarget2->m_aabbSize.vecMax = vecMonsterMax;
@@ -1270,14 +1269,13 @@ void CGame::GameLoop() {
   pTarget2->m_bEnemyAI = true;
   pTarget2->m_bTakesDamage = true;
 
-  CCharacter* pTarget3 = CreateCharacter();
+  CCharacter *pTarget3 = CreateCharacter();
   pTarget3->SetTransform(Vector(2, 2, 2), 0, Vector(0, 1, 0), Vector(-6, 0, 8));
   pTarget3->m_aabbSize.vecMin = vecMonsterMin;
   pTarget3->m_aabbSize.vecMax = vecMonsterMax;
   pTarget3->m_iBillboardTexture = m_iMonsterTexture;
   pTarget3->m_bEnemyAI = true;
   pTarget3->m_bTakesDamage = true;
-  */
 
   Vector vecPropMin = Vector(-.1f, 0, -.1f);
   Vector vecPropMax = Vector(.1f, .2f, .1f);
@@ -1310,7 +1308,7 @@ void CGame::GameLoop() {
   float flPreviousTime = 0;
   float flCurrentTime = Application()->GetTime();
 
-  while (true) {
+  while (IsOpen()) {
     // flCurrentTime will be lying around from last frame. It's now the previous
     // time.
     flPreviousTime = flCurrentTime;

@@ -74,20 +74,25 @@ public:
   };
   virtual void WindowClose(GLFWwindow *window);
 
+  static void WindowResizeCallback(GLFWwindow *window, int x, int y) {
+    Get()->WindowResize(x, y);
+  };
+  virtual void WindowResize(int x, int y);
+
   static void MouseMotionCallback(GLFWwindow *window, double x, double y) {
     Get()->MouseMotion(x, y);
   };
   virtual void MouseMotion(int x, int y);
 
   static void MouseInputCallback(GLFWwindow *window, int a, int b, int c);
-  void MouseInputCallback(int iButton, tinker_mouse_state_t iState);
   virtual bool MouseInput(int iButton, tinker_mouse_state_t iState);
 
   static void MouseWheelCallback(int x, int y);
   virtual void MouseWheel(int x, int y){};
 
-  static void KeyEventCallback(GLFWwindow *window, int a, int b, int c, int d) {
-    Get()->KeyEvent(window, a, b, c, d);
+  static void KeyEventCallback(GLFWwindow *window, int iKey, int iScancode,
+                               int iAction, int iMods) {
+    Get()->KeyEvent(window, iKey, iScancode, iAction, iMods);
   };
   void KeyEvent(GLFWwindow *window, int a, int b, int c, int d);
   virtual bool KeyPress(int c);

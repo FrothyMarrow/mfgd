@@ -98,6 +98,11 @@ void CRenderer::LoadShaders() {
   }
 }
 
+void CRenderer::WindowResize(int w, int h) {
+  m_iWidth = w;
+  m_iHeight = h;
+}
+
 void CRenderer::StartRendering(class CRenderingContext *pContext) {
   m_iWidth = Application()->GetWindowWidth();
   m_iHeight = Application()->GetWindowHeight();

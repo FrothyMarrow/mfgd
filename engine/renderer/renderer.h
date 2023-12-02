@@ -85,6 +85,8 @@ public:
   int BunnyNormalOffsetBytes();
   int BunnyStrideBytes();
 
+  virtual void WindowResize(int w, int h);
+
   virtual void StartRendering(class CRenderingContext *pContext);
   virtual void FinishRendering(class CRenderingContext *pContext);
   virtual void RenderOffscreenBuffers(class CRenderingContext *pContext);

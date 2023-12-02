@@ -117,6 +117,7 @@ bool CApplication::OpenWindow(size_t iWidth, size_t iHeight, bool bFullscreen,
   GetScreenSize(iScreenWidth, iScreenHeight);
 
   glfwSetWindowCloseCallback(m_pWindow, &CApplication::WindowCloseCallback);
+  glfwSetWindowSizeCallback(m_pWindow, &CApplication::WindowResizeCallback);
   glfwSetKeyCallback(m_pWindow, &CApplication::KeyEventCallback);
   glfwSetCharCallback(m_pWindow, &CApplication::CharEventCallback);
   glfwSetCursorPosCallback(m_pWindow, &CApplication::MouseMotionCallback);
@@ -127,10 +128,6 @@ bool CApplication::OpenWindow(size_t iWidth, size_t iHeight, bool bFullscreen,
   SetMouseCursorEnabled(true);
 
   gladLoadGL(glfwGetProcAddress);
-
-  int iFrameBufferWidth, iFrameBufferHeight;
-  glfwGetFramebufferSize(m_pWindow, &iFrameBufferWidth, &iFrameBufferHeight);
-  glViewport(0, 0, iFrameBufferWidth, iFrameBufferHeight);
 
   glEnable(GL_CULL_FACE);
   glEnable(GL_DEPTH_TEST);
@@ -164,10 +161,23 @@ bool CApplication::HasFocus() {
 void CApplication::Render() {}
 
 void CApplication::WindowClose(GLFWwindow *window) {
-  // TODO: This is a hack to get it to compile.
+  glfwSetWindowShouldClose(window, true);
+  m_bIsOpen = false;
 }
 
-void CApplication::MouseMotion(int x, int y) {}
+void CApplication::WindowResize(int w, int h) {
+  m_iWindowWidth = w;
+  m_iWindowHeight = h;
+
+  if (m_pRenderer)
+    m_pRenderer->WindowResize(w, h);
+
+  Render();
+
+  SwapBuffers();
+}
+
+void CApplication::MouseMotion(int x, int y){};
 
 bool CApplication::MouseInput(int iButton, tinker_mouse_state_t iState) {
   return false;
@@ -384,20 +394,13 @@ void CApplication::MouseInputCallback(GLFWwindow *window, int a, int b, int c) {
   // TODO: This is a hack to get it to compile.
 }
 
-void CApplication::MouseInputCallback(int iButton,
-                                      tinker_mouse_state_t iState) {
-  if (iState == 1) {
-    if (m_flLastMousePress < 0 || GetTime() - m_flLastMousePress > 0.25f)
-      MouseInput(iButton, iState);
-    else
-      MouseInput(iButton, TINKER_MOUSE_DOUBLECLICK);
-    m_flLastMousePress = GetTime();
-  } else
-    MouseInput(iButton, iState);
-}
-
-void CApplication::KeyEvent(GLFWwindow *window, int a, int b, int c, int d) {
-  // TODO: This is a hack to get it to compile.
+void CApplication::KeyEvent(GLFWwindow *window, int iKey, int iScancode,
+                            int iAction, int iMods) {
+  if (iAction == GLFW_REPEAT || iAction == GLFW_PRESS) {
+    KeyPress(MapKey(iKey));
+  } else {
+    KeyRelease(MapKey(iKey));
+  }
 }
 
 void CApplication::CharEvent(GLFWwindow *window, unsigned int c) {
