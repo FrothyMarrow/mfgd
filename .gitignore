@@ -3,6 +3,7 @@
 /*.sdf
 /*.suo
 /*.opensdf
+/result
 mfgd
 *.o
 *.dylib
