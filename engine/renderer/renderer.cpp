@@ -87,14 +87,14 @@ void CRenderer::Initialize() {
 }
 
 void CRenderer::LoadShaders() {
-  vector<string> asShaders = ListDirectory("shaders", false);
+  vector<string> asShaders = ListDirectory("resources/shaders", false);
 
   for (size_t i = 0; i < asShaders.size(); i++) {
     string sShader = asShaders[i];
     if (!str_endswith(sShader, ".txt"))
       continue;
 
-    CShaderLibrary::AddShader("shaders/" + sShader);
+    CShaderLibrary::AddShader("resources/shaders/" + sShader);
   }
 }
 

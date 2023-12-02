@@ -55,7 +55,7 @@ CShaderLibrary::CShaderLibrary() {
   m_bCompiled = false;
   m_iSamples = -1;
 
-  FILE *f = tfopen("shaders/functions.si", "r");
+  FILE *f = tfopen("resources/shaders/functions.si", "r");
 
   TAssert(f);
   if (f) {
@@ -66,7 +66,7 @@ CShaderLibrary::CShaderLibrary() {
     fclose(f);
   }
 
-  f = tfopen("shaders/header.si", "r");
+  f = tfopen("resources/shaders/header.si", "r");
 
   TAssert(f);
   if (f) {
@@ -183,7 +183,7 @@ void CShaderLibrary::CompileShaders(int iSamples) {
 
   //	if (GameServer()->GetWorkListener())
   //		GameServer()->GetWorkListener()->SetAction("Compiling shaders",
-  //Get()->m_aShaders.size());
+  // Get()->m_aShaders.size());
 
   if (Get()->m_bCompiled) {
     // If this is a recompile just blow through them.
@@ -302,7 +302,7 @@ bool CShader::Compile() {
 
   sShaderHeader += CShaderLibrary::GetShaderFunctions();
 
-  FILE *f = tfopen("shaders/" + m_sVertexFile + ".vs", "r");
+  FILE *f = tfopen("resources/shaders/" + m_sVertexFile + ".vs", "r");
 
   TAssert(f);
   if (!f)
@@ -319,7 +319,7 @@ bool CShader::Compile() {
 
   fclose(f);
 
-  f = tfopen("shaders/" + m_sFragmentFile + ".fs", "r");
+  f = tfopen("resources/shaders/" + m_sFragmentFile + ".fs", "r");
 
   TAssert(f);
   if (!f)

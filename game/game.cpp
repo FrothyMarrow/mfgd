@@ -80,9 +80,9 @@ CGame::CGame(int argc, char **argv) : CApplication(argc, argv) {
 }
 
 void CGame::Load() {
-  m_iMonsterTexture = GetRenderer()->LoadTextureIntoGL("monster.png");
-  m_iCrateTexture = GetRenderer()->LoadTextureIntoGL("crate.png");
-  m_iNormalTexture = GetRenderer()->LoadTextureIntoGL("normal.png");
+  m_iMonsterTexture = GetRenderer()->LoadTextureIntoGL("resources/monster.png");
+  m_iCrateTexture = GetRenderer()->LoadTextureIntoGL("resources/crate.png");
+  m_iNormalTexture = GetRenderer()->LoadTextureIntoGL("resources/normal.png");
 
   GraphReset();
 
