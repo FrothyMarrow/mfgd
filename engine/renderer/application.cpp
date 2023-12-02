@@ -74,6 +74,7 @@ bool CApplication::OpenWindow(size_t iWidth, size_t iHeight, bool bFullscreen,
 
   m_bFullscreen = bFullscreen;
 
+  // Currently, fullscreen is broken on Mac OS X.
   if (HasCommandLineSwitch("--fullscreen"))
     m_bFullscreen = true;
 
@@ -110,11 +111,6 @@ bool CApplication::OpenWindow(size_t iWidth, size_t iHeight, bool bFullscreen,
   }
 
   glfwMakeContextCurrent(m_pWindow);
-
-  int iScreenWidth;
-  int iScreenHeight;
-
-  GetScreenSize(iScreenWidth, iScreenHeight);
 
   glfwSetWindowCloseCallback(m_pWindow, &CApplication::WindowCloseCallback);
   glfwSetWindowSizeCallback(m_pWindow, &CApplication::WindowResizeCallback);
@@ -396,6 +392,12 @@ void CApplication::MouseInputCallback(GLFWwindow *window, int a, int b, int c) {
 
 void CApplication::KeyEvent(GLFWwindow *window, int iKey, int iScancode,
                             int iAction, int iMods) {
+
+  if (iKey == GLFW_KEY_ESCAPE && iAction == GLFW_PRESS) {
+    SetMouseCursorEnabled(!IsMouseCursorEnabled());
+    return;
+  }
+
   if (iAction == GLFW_REPEAT || iAction == GLFW_PRESS) {
     KeyPress(MapKey(iKey));
   } else {

@@ -211,9 +211,10 @@ void CGame::KeyRelease(int c) {
 
 // This method is called every time the player moves the mouse
 void CGame::MouseMotion(int x, int y) {
-  if (!HasFocus()) {
-    // Swallow the input while the window isn't in focus so the player
-    // isn't facing off in a strange direction when they tab back in.
+  if (!HasFocus() || IsMouseCursorEnabled()) {
+    // Swallow the input while the window isn't in focus or mouse cursor is
+    // enabled so the player isn't facing off in a strange direction when they
+    // tab back in.
     m_iLastMouseX = x;
     m_iLastMouseY = y;
     return;
