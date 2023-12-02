@@ -3,7 +3,8 @@ CXX=clang++
 RM=rm -f
 CPPFLAGS=-D_DEBUG -g#-O2
 LDLIBS=-lglfw -framework OpenGL -framework ApplicationServices
-INCLUDES=-Iinclude -Iengine -Iengine/common -Iengine/math -Iengine/include
+LDFLAGS=-L/opt/homebrew/lib
+INCLUDES=-Iinclude -Iengine -Iengine/common -Iengine/math -Iengine/include -I/opt/homebrew/include
 
 SRCS_CPP= \
 	engine/common/platform_osx.cpp \
@@ -42,7 +43,7 @@ OBJS=$(OBJS_CPP) $(OBJS_C)
 all: mfgd
 
 mfgd: $(OBJS)
-	$(CXX) -o mfgd $(OBJS) $(LDLIBS) 
+	$(CXX) $(LDFLAGS) -o mfgd $(OBJS) $(LDLIBS)
 
 %.o:%.c
 	$(CC) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
