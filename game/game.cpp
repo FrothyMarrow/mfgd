@@ -35,6 +35,7 @@ OF SUCH DAMAGE.
 
 #if defined(__APPLE__)
 #include <OpenGL/glu.h>
+#include <common_platform.h>
 #include <unistd.h>
 #else
 #include <GL/glu.h>
@@ -80,9 +81,9 @@ CGame::CGame(int argc, char **argv) : CApplication(argc, argv) {
 }
 
 void CGame::Load() {
-  m_iMonsterTexture = GetRenderer()->LoadTextureIntoGL("resources/monster.png");
-  m_iCrateTexture = GetRenderer()->LoadTextureIntoGL("resources/crate.png");
-  m_iNormalTexture = GetRenderer()->LoadTextureIntoGL("resources/normal.png");
+  m_iMonsterTexture = GetRenderer()->LoadTextureIntoGL("monster.png");
+  m_iCrateTexture = GetRenderer()->LoadTextureIntoGL("crate.png");
+  m_iNormalTexture = GetRenderer()->LoadTextureIntoGL("normal.png");
 
   GraphReset();
 

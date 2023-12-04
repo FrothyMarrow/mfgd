@@ -87,14 +87,16 @@ void CRenderer::Initialize() {
 }
 
 void CRenderer::LoadShaders() {
-  vector<string> asShaders = ListDirectory("resources/shaders", false);
+  string sShaderDirectory = GetResourceDataDirectory("shaders");
+
+  vector<string> asShaders = ListDirectory(sShaderDirectory, false);
 
   for (size_t i = 0; i < asShaders.size(); i++) {
     string sShader = asShaders[i];
     if (!str_endswith(sShader, ".txt"))
       continue;
 
-    CShaderLibrary::AddShader("resources/shaders/" + sShader);
+    CShaderLibrary::AddShader(sShaderDirectory + sShader);
   }
 }
 
@@ -303,8 +305,10 @@ size_t CRenderer::LoadTextureIntoGL(string sFilename, int iClamp) {
   if (!sFilename.length())
     return 0;
 
+  std::string sFilePath = GetResourceDataDirectory("textures", sFilename);
+
   int x, y, n;
-  unsigned char *pData = stbi_load(sFilename.c_str(), &x, &y, &n, 4);
+  unsigned char *pData = stbi_load(sFilePath.c_str(), &x, &y, &n, 4);
 
   if (!pData)
     return 0;

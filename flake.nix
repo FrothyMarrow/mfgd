@@ -8,15 +8,18 @@
   }: let
     system = "aarch64-darwin";
     pkgs = import nixpkgs {
-      system = system;
+      inherit system;
     };
   in {
     packages.${system}.default = pkgs.stdenv.mkDerivation {
       name = "mfgd";
       src = ./.;
 
+      nativeBuildInputs = [
+        pkgs.makeWrapper
+      ];
+
       buildInputs = [
-        pkgs.stdenv
         pkgs.glfw
         pkgs.darwin.apple_sdk.frameworks.ApplicationServices
         pkgs.darwin.apple_sdk.frameworks.OpenGL
@@ -27,7 +30,9 @@
         cp mfgd $out/bin/mfgd
 
         mkdir -p $out/resources
-        cp -r resources/ $out/resources/
+        cp -r resources/* $out/resources
+
+        wrapProgram $out/bin/mfgd --prefix C_RESOURCE_PATH : $out/resources
       '';
     };
 

@@ -83,6 +83,30 @@ std::string GetAppDataDirectory(const std::string &sDirectory,
   return sReturn;
 }
 
+std::string GetResourceDataDirectory(const std::string &sDirectory,
+                                     const std::string &sFile) {
+  char *pszVar = getenv("C_RESOURCE_PATH");
+
+  if (!pszVar) {
+    std::string sReturn;
+
+    sReturn.append(".")
+        .append(DIR_SEP)
+        .append("resources")
+        .append(DIR_SEP)
+        .append(sDirectory)
+        .append(DIR_SEP)
+        .append(sFile);
+
+    return sReturn;
+  }
+
+  std::string sReturn(pszVar);
+  sReturn.append(DIR_SEP).append(sDirectory).append(DIR_SEP).append(sFile);
+
+  return sReturn;
+}
+
 std::vector<std::string> ListDirectory(const std::string &sDirectory,
                                        bool bDirectories) {
   std::vector<std::string> asResult;

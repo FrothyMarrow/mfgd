@@ -55,7 +55,10 @@ CShaderLibrary::CShaderLibrary() {
   m_bCompiled = false;
   m_iSamples = -1;
 
-  FILE *f = tfopen("resources/shaders/functions.si", "r");
+  string sShaderFunctionsPath =
+      GetResourceDataDirectory("shaders", "functions.si");
+
+  FILE *f = tfopen(sShaderFunctionsPath.c_str(), "r");
 
   TAssert(f);
   if (f) {
@@ -66,7 +69,9 @@ CShaderLibrary::CShaderLibrary() {
     fclose(f);
   }
 
-  f = tfopen("resources/shaders/header.si", "r");
+  string sShaderHeaderPath = GetResourceDataDirectory("shaders", "header.si");
+
+  f = tfopen(sShaderHeaderPath.c_str(), "r");
 
   TAssert(f);
   if (f) {
@@ -302,7 +307,10 @@ bool CShader::Compile() {
 
   sShaderHeader += CShaderLibrary::GetShaderFunctions();
 
-  FILE *f = tfopen("resources/shaders/" + m_sVertexFile + ".vs", "r");
+  string sVertexShaderPath =
+      GetResourceDataDirectory("shaders", m_sVertexFile + ".vs");
+
+  FILE *f = tfopen(sVertexShaderPath.c_str(), "r");
 
   TAssert(f);
   if (!f)
@@ -319,7 +327,10 @@ bool CShader::Compile() {
 
   fclose(f);
 
-  f = tfopen("resources/shaders/" + m_sFragmentFile + ".fs", "r");
+  string sFragmentShaderPath =
+      GetResourceDataDirectory("shaders", m_sFragmentFile + ".fs");
+
+  f = tfopen(sFragmentShaderPath.c_str(), "r");
 
   TAssert(f);
   if (!f)

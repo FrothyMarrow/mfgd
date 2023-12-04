@@ -42,6 +42,8 @@ std::string GetClipboard();
 void SetClipboard(const std::string &sBuf);
 std::string GetAppDataDirectory(const std::string &sDirectory,
                                 const std::string &sFile = "");
+std::string GetResourceDataDirectory(const std::string &sDirectory,
+                                     const std::string &sFile = "");
 std::vector<std::string> ListDirectory(const std::string &sDirectory,
                                        bool bDirectories = true);
 bool IsFile(const std::string &sPath);
