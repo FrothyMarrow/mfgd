@@ -3,6 +3,8 @@ Math for Game Developers Sample Code
 
 This is the sample code that is used in [Math for Game Developers YouTube series](http://www.youtube.com/playlist?list=PLW3Zl3wyJwWOpdhYedlD-yCB7WQoHf-My). It has been modified to run on GLFW 3 and glad, the original source code can be found at [MathForGameDevelopers](https://github.com/BSVino/MathForGameDevelopers). 
 
+![Great Gameplay](./assets/GreatGameplay.png)
+
 Building and Running
 --------------------
 
