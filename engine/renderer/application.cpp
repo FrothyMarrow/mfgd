@@ -396,10 +396,7 @@ void CApplication::MouseInputCallback(int iButton,
   int iTinkerButton = MapMouseKey(iButton);
 
   if (iState == 1) {
-    if (m_flLastMousePress < 0 || GetTime() - m_flLastMousePress > 0.25f)
-      MouseInput(iTinkerButton, iState);
-    else
-      MouseInput(iTinkerButton, TINKER_MOUSE_DOUBLECLICK);
+    MouseInput(iTinkerButton, iState);
     m_flLastMousePress = GetTime();
   } else
     MouseInput(iTinkerButton, iState);
