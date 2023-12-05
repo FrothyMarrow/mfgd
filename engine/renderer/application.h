@@ -84,7 +84,9 @@ public:
   };
   virtual void MouseMotion(int x, int y);
 
-  static void MouseInputCallback(GLFWwindow *window, int a, int b, int c);
+  static void MouseInputCallback(GLFWwindow *window, int iKey, int iAction,
+                                 int iMods);
+  void MouseInputCallback(int iButton, tinker_mouse_state_t iState);
   virtual bool MouseInput(int iButton, tinker_mouse_state_t iState);
 
   static void MouseWheelCallback(int x, int y);
@@ -127,9 +129,7 @@ public:
   virtual void OnClientDisconnect(int iClient){};
 
   virtual class CRenderer *CreateRenderer();
-  class CRenderer *GetRenderer() {
-    return m_pRenderer;
-  }
+  class CRenderer *GetRenderer() { return m_pRenderer; }
 
   static CApplication *Get() { return s_pApplication; };
 

@@ -386,8 +386,23 @@ tinker_keys_t MapJoystickKey(int c) {
   return TINKER_KEY_UKNOWN;
 }
 
-void CApplication::MouseInputCallback(GLFWwindow *window, int a, int b, int c) {
-  // TODO: This is a hack to get it to compile.
+void CApplication::MouseInputCallback(GLFWwindow *window, int iKey, int iAction,
+                                      int iMods) {
+  Get()->MouseInputCallback(iKey, (tinker_mouse_state_t)iAction);
+}
+
+void CApplication::MouseInputCallback(int iButton,
+                                      tinker_mouse_state_t iState) {
+  int iTinkerButton = MapMouseKey(iButton);
+
+  if (iState == 1) {
+    if (m_flLastMousePress < 0 || GetTime() - m_flLastMousePress > 0.25f)
+      MouseInput(iTinkerButton, iState);
+    else
+      MouseInput(iTinkerButton, TINKER_MOUSE_DOUBLECLICK);
+    m_flLastMousePress = GetTime();
+  } else
+    MouseInput(iTinkerButton, iState);
 }
 
 void CApplication::KeyEvent(GLFWwindow *window, int iKey, int iScancode,
